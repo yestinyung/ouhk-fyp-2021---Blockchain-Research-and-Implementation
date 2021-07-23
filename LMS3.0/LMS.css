@@ -1,0 +1,669 @@
+*{
+    margin:0;
+    padding:0;
+   
+}
+*,
+*::before,
+*::after{
+    box-sizing: inherit;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    height: 100%;
+    width: 100%;
+    }
+
+body{
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 3.4rem;
+    height: 100%;
+    width: 100%;
+    color:#fff;
+    overflow-x:hidden;
+
+}
+
+.login-page {
+    overflow-x:hidden;
+}
+.header {
+    background-image: linear-gradient(to right bottom,rgba(110, 189, 216, 0.616), rgba(129, 129, 175, 0.637)), url(img/LMS1.jpg);
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    padding:8rem;
+    
+
+  
+}
+.define{
+    text-align: center;
+    background-image: linear-gradient(to right, rgba(73, 116, 209, 0.3),rgba(5, 29, 133, 0.644));
+    padding-top: 15rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: 45%;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin:3rem;
+    animation: moveInLeft 2s; 
+    backface-visibility: hidden;
+
+
+}
+.detail{
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+    
+     
+}
+
+@keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-100px); }
+    80% {
+      transform: translateX(10px); }
+    100% {
+      opacity: 1;
+      transform: translate(0); } }
+  
+  @keyframes moveInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100px); }
+    80% {
+      transform: translateX(-10px); }
+    100% {
+      opacity: 1;
+      transform: translate(0); } }
+.link{
+    border:none;
+    text-transform: uppercase;
+    color: rgba(5, 29, 133, 0.644);
+    font-size: 1.5rem;
+    margin: 5rem;
+    transition: all .2s;
+        
+}
+.link:hover{
+    background-color: rgba(5, 29, 133, 0.644);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+      
+}
+.welcome{
+    
+margin-top: 20rem;
+position: relative;
+animation: moveInRight 2s ;
+backface-visibility: hidden; 
+
+
+}
+.welcome-text{
+margin-bottom: 2rem;
+}
+.btn{
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    position: absolute;
+    top: 30%;
+    left:30%;
+    width: 45%;
+    padding:1.2rem;
+    border-radius: 100px;
+    border: none;
+    text-align: center;
+    background-color: #6e8beb;
+    color:#fff;
+    transition: all .3s;
+}
+.btn:hover{
+    background-color: rgba(9, 47, 128, 0.3);
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+.btn:active, .btn:focus{
+    outline: none;
+    border:none;
+    transform: translateY(10px);
+}
+/* LMS_dashboard part */
+
+.header2{
+    
+    height:80vh;
+    background-image: linear-gradient(to right,  rgba(73, 116, 209, 0.3),rgba(5, 29, 133, 0.644) ), url(img/db1.jpg);
+    background-size: cover;
+    position: relative;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80% );
+    
+}
+.header2-text{
+    position: absolute;
+    top: 10rem;
+    left: 35rem;
+    right: 2rem;
+    color: aliceblue;
+    height: 55%;
+    width: 50%;
+    text-transform: uppercase;
+    background-color: rgba(211, 204, 204, 0.5);
+    padding:2rem;
+    text-align: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+ 
+   
+}
+.text1{
+    font-size: 4rem;
+    font-weight: 750;
+    color: rgba(5, 29, 133, 0.644);
+}
+.text2{
+    font-size: 3.6rem;
+    font-weight: 700;
+}
+.search{
+    border: none;
+    padding:5rem;
+}
+.search-input{
+    padding:1rem 5rem;
+    border-radius: 30px;
+    background-color: rgba(119, 110, 110, 0.5);
+    outline: none;
+    border: none;
+}
+.search-input::-webkit-input-placeholder{
+    font-weight: 100;
+    color: rgb(198, 201, 204);
+    text-align: center;
+}
+.search-input:active{
+    color: #fff;
+}
+.lists{
+height: 100%;
+width: 100%;
+background-color: aliceblue;
+display: flex;
+justify-content: space-around;
+align-items: center;
+clip-path: polygon(0% 25%, 0% 100%, 100% 100%, 100% 0%);
+margin-top: 10rem;
+
+}
+.lists-box{
+    margin-top: 20rem;
+    margin-bottom: 8rem;
+    height: 63%;
+    width: 30%;
+    padding: 4rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(141, 210, 231, 0.904);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform .3s;
+
+}
+.lists-box:hover{
+        transform: translateY(-1.5rem) scale(1.03);
+}
+.lists-img{
+    height: 32%;
+    width: 30%;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+
+}
+.lists-title{
+    color: #6e8beb;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    text-transform: uppercase;
+}
+.lists-text{
+font-size: 1.4rem;
+font-weight: 400;
+margin-bottom: 2rem;
+
+}
+.lists-link{
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: #6e8beb;
+    color: aliceblue;
+    padding:.9rem 4rem;
+    font-weight: 400;
+    border-radius: 100px;
+}
+.lists-link:hover{
+    text-decoration: none;
+}
+hr{
+background-color: rgb(30, 103, 175);
+margin-bottom: 1rem;
+width: 45%;
+height: .2rem;
+border: none;
+}
+
+
+/* login part */
+.login-page{
+    background-image: linear-gradient(to right bottom,rgba(73, 116, 209, 0.3),rgba(5, 29, 133, 0.644)), url(img/login.jpg);
+    height: 100%;
+    background-size: cover;
+   transition: animation 1s;
+   display: flex;
+   justify-content: flex-end;
+   backface-visibility: hidden;
+}
+.login-box{
+    height: 80%;
+   padding: 3rem;
+    background-color: rgba(181, 185, 189,.5);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8rem;
+    margin-top: 5rem;
+    animation:  moveInRight 1s;
+    backface-visibility: hidden;
+    
+}
+.login-text{
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    letter-spacing: 7px;
+    
+
+}
+.login-main{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+.login-input{
+    margin-bottom: 3rem;
+    border: none;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+    margin-left: 1.5rem;
+    color: aliceblue;
+    font-size: 2rem;
+
+    
+}
+.login-btn{
+    margin-top: 1rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+    background-color: rgb(115, 173, 223);
+    padding: .8rem 3rem;
+    text-align: center;
+    border-radius: 100px;
+    width: 100%;
+    color: aliceblue;
+    border: none;
+    letter-spacing: 2px;
+    font-weight: 400;
+    cursor: pointer;
+    
+}
+.login-input:focus{
+    outline: none;
+}
+.login-input:active{
+    outline: none;
+    border: none;
+}
+
+.login-btn2{
+    text-decoration: none;
+    font-size: 1.4rem;
+    text-align: center;
+    color: aliceblue;
+    font-weight: 300;
+    margin-top: 1rem;
+    
+    
+}
+.login-btn2:hover{
+    color: rgb(17, 104, 161);
+   
+}
+.login-input::-webkit-input-placeholder{
+    font-weight: 100;
+    font-size: 1.4rem;
+    color: rgb(198, 201, 204);
+    
+}
+.content{
+    display: flex;
+   
+}
+
+
+
+
+.areas{
+    height: 20rem;
+    margin: 5rem;
+}
+.areas-title{
+color:rgba(5, 29, 133);
+font-size: 4rem;
+font-weight: 600;
+margin-bottom: 3rem;
+}
+.areas-list{
+list-style: none;
+
+}
+.areas-item{
+  
+    margin-bottom: 2rem;
+    color: rgb(5, 145, 170);
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+.fa {
+    margin-right: 1rem;
+}
+.back-link{
+    color:rgb(54, 67, 73);
+    margin-left: 2rem;
+    
+}
+.back-link:hover{
+    color: rgb(84, 121, 146);
+    text-decoration: none;
+    
+}
+
+
+/* courses and materials part */
+.course-area{
+    background-image: linear-gradient(to right bottom,rgba(81, 105, 155, 0.3),rgba(11, 112, 82, 0.644));
+    background-size: cover;
+    height: 100%; 
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    }
+.course-box{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  
+}
+.user-nav{
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow:  0 10px 20px rgba(114, 109, 109, 0.06);
+
+}
+.user-nav-img{
+    margin:1rem 0;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    
+}
+.user-nav-text{
+    margin:1rem 1.5rem;
+    margin-left: .8rem;
+    color: rgb(107, 103, 103);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+.main-content{
+    display:flex;
+}
+.side-bar{
+background-color: rgba(51, 128, 151, 0.2);
+
+}
+.side-nav{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-top: -2rem;
+    list-style: none;
+    margin-bottom: 20rem;
+    margin-top:3.1rem;
+}
+
+.side-nav-link{
+    color: rgb(54, 67, 73);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 750;
+    padding: 1.7rem 1.5rem;
+    display: block;
+    
+      
+}
+.side-nav-link:hover{
+   text-decoration: none;
+    background-color: rgb(130, 189, 181);
+    
+  
+}
+.side-nav-link:focus{
+    text-decoration: none;
+    background-color: rgb(130, 189, 181);
+}
+/* PDF part */
+.PDF_title{
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    color: #759795;
+}
+.PDF-link{
+display: flex;
+justify-content: space-around;
+align-items: center;
+padding: 1.5rem;
+padding-right: 30rem;
+background-color: rgba(139, 211, 195, 0.3);
+margin: 3rem;
+border-radius: 50px;
+transform: scaleY(1);
+transition: transform .2s;
+
+}
+.PDF-link:hover{
+    text-decoration: none;
+    transform: translateY(-1.3rem) scale(1.02);
+}
+.PDF-photo{
+    height: 4rem;
+    width:4rem;
+    margin-right: 1rem;
+   
+}
+.PDF-text{
+    color: #46819c;
+    font-size: 1.5rem;
+    font-weight: 550;
+
+}
+
+/* video part */
+
+.video-lists{
+list-style: none;
+display: flex;
+}
+
+.video-link{
+    background-color: rgba(139, 211, 195, 0.5);
+    border-radius: 10px;
+    padding: 2rem;
+    height: 20rem;
+    width: 20rem;
+    margin: 2rem;
+    transform: scale(1);
+    transition:all .3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.15); 
+   
+}
+.video-link:hover{
+    text-decoration: none;
+    color: #759795;
+    transform: translateY(-1.3rem) scaleY(1.02);
+
+}
+.video-photo{
+height: 10rem;
+width: 10rem;
+border-radius: 50%;
+margin-bottom: 1.5rem;
+}
+/* book part */
+.book-link{
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    background-color: rgba(139, 211, 195, 0.5);
+    border-radius: 10px;
+    padding: 2rem;
+    height: 20rem;
+    width: 20rem;
+    margin: 2rem;
+    transform: scale(1);
+    transition:all .3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.15); 
+    
+}
+.book-link:hover{
+    text-decoration: none;
+    color: #759795;
+    transform: translateY(-1.3rem) scaleY(1.02);
+
+}
+
+.links-item{
+    background-color:rgba(139, 211, 195, 0.5);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+   border-radius: 50px;
+   margin: 2rem;
+   transition: all .3s;
+}
+.links-item:hover{
+    text-decoration: none;
+    color: #759795;
+    transform: translateY(-1.3rem) scaleY(1.02);
+}
+.links-photo{
+    height: 4rem;
+    width: 4rem;
+    margin-right: 2rem;
+}
+
+/* help part */
+.help{
+background-color: rgba(196, 236, 230, 0.5);
+margin:3rem;
+padding: 2rem;
+color: #46819c;
+}
+
+
+
+
+@media only screen and (max-width: 767px){
+    .login-box{
+        
+        top: 0;
+        left: 0;
+        margin: 6rem 1rem;
+        padding: 0 .5rem;
+    } 
+    .header{
+        flex-direction: column;
+        align-items: center;
+        justify-content: unset;
+        padding: 0;
+        font-size: 1.5rem; 
+       
+    }
+    .define{
+        padding:6rem;
+        margin: 3rem 3rem;
+        margin-bottom: 0;
+        width: 80%;
+        
+    }
+    .btn{
+        top:61px;
+      width: 70%;
+      left: 40px;
+        margin: 0;
+        
+       
+       
+    }
+    .welcome{
+        margin: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+  
+    
+}
+@media only screen and (max-width: 330px){
+    .login-input{
+        margin: 0;
+        padding: 1.5rem 0;
+    }
+    .define{
+       
+        padding:4rem;
+        margin: 3rem 3rem;
+        margin-bottom: 0;
+        width: 80%;
+        
+    }
+   
+}
+
+
+
+        

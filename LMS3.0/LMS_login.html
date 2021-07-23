@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Login
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="LMS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="login-page">
+            <div class="login-box "> 
+                <h1 class="login-text">LOGIN</h1>        
+					<form name="login" action="login.php" method="post">
+                        <div class="content">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <input type=text placeholder="Enter username" name="name" class="login-input" required>
+                        </div>
+                        <div class="content">
+                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                            <input type=password placeholder="Enter password" name="password" class="login-input" required>
+                        </div>
+                        <a href="#" class="login-btn2" >Forget password?</a>
+                        <input type="submit" value="Login" name="submit" class="login-btn">
+                    </form>      
+            </div>  
+        </div>
+    </body>
+</html>

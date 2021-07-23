@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Courses
+        </title>
+        <link rel="stylesheet" href="LMS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@0.18.2/dist/web3.min.js"></script>
+        <script>
+            var currentUrl = window.location.href;
+            let params = (new URL(currentUrl)).searchParams;
+            var id_Text=params.get('id')
+
+            window.onload = function what(){
+                document.getElementById("id").innerHTML = 'ID: '+id_Text;
+            };
+            function Admin_Create() {
+                jQuery.ajax({
+                    type: "POST",
+                    url: "create_user.php?stud_id="+$("#stud_id").val()+"&pw="+$("#pw").val()+"&blockchain_code=''&type=admin",
+                    success:function(data) {
+                    }
+                });
+                $("#log").html('complete');
+            }
+            function home() {
+                window.location.href = 'LMS_admin_home.html?id=' + id_Text ;
+            }
+            function change() {
+                window.location.href = 'LMS_admin_change.html?id=' + id_Text ;
+            }
+        </script>
+    </head>
+    <body>
+        <main class="course-area">
+            <div class="course-box">
+                <nav class="user-nav">
+                    <a href="LMS_login.html" class="back-link">&larr; Logout</a>
+                    <div class="user-nav-user">
+                        <img src="img/my.jpg" alt="my" class="user-nav-img">
+                        <span class="user-nav-text" id="id"></span>
+                    </div>
+
+                </nav>
+                <div class="main-content">
+                    <nav class="side-bar" style="border:3px #cccccc solid;width:170px;height:1000px;">
+                        <ul class="side-nav" style="width:170px;height:1000px;">
+                            <li class="side-nav-item">
+                                <a onclick="home()" class="side-nav-link">
+                                    <i class="fa fa-book" aria-hidden="true"></i>
+                                    <span class="side-nav-text">home</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a onclick="change()" class="side-nav-link">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span class="side-nav-text">change</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                <div style="width:1000px;height:1000px;border:3px #cccccc dashed;" class="video-content">
+                <div class="PDF-content">
+                    <h2 class="PDF_title">
+                        Admin
+                    </h2>
+                    <center><table style="border:3px #cccccc solid;width:900px;height:700px;" cellpadding="10" border='1' >
+                        <tr><td>
+                            <center><h1>Admin Create</h1></center>
+                            <br>
+                            <center><label for="ip">username:</label>
+                                <input type="text" id="stud_id" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">pw:</label>
+                                <input type="text" id="pw" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><button id="deploy_button" onclick="Admin_Create()">connection</button></center>
+                            <br>
+                            <br>
+                            <h2 id="log"></h2>
+                        </td></tr>
+                    </table></center>
+                    <br>
+                </div>
+            </div>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Courses
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="LMS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@0.18.2/dist/web3.min.js"></script>
+        <script>
+            web3 = new Web3(new Web3.providers.HttpProvider("http://120.126.151.197:7777"));
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            var currentUrl = window.location.href;
+            let params = (new URL(currentUrl)).searchParams;
+            var id_Text = params.get('id')
+			var hash_Text = params.get('hash')
+            window.onload = function what(){
+                document.getElementById("id").innerHTML = 'id: '+id_Text;
+				//document.getElementById("hash").innerHTML = 'hash: '+hash_Text;
+            };
+            var grad_year_Text
+            var stud_id_Text
+            var stud_name_zh_Text
+            var stud_name_en_Text
+            var course_zh_Text
+            var course_en_Text
+            var infoContract = web3.eth.contract([
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_grad_year",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_id",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_en",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_en",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "setInfo",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getInfo",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_grad_year",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_id",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_en",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_en",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "change",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ]);
+            //var info = infoContract.at('0x0a577bDa2c1d9c5f0b83f51c85D8a874fB1f9136');
+            var info = infoContract.at(hash_Text);
+            info.getInfo(function (error, result) {
+                if (!error) {
+                    grad_year_Text=result[0];
+                    stud_id_Text=result[1];
+                    stud_name_zh_Text=result[2];
+                    stud_name_en_Text=result[3];
+                    course_zh_Text=result[4];
+                    course_en_Text=result[5];
+                    grad_img_name_Text=result[6];
+
+                    $("#grad_year").html(grad_year_Text);
+                    $("#stud_id").html(stud_id_Text);
+                    $("#stud_name_zh").html(stud_name_zh_Text);
+                    $("#stud_name_en").html(stud_name_en_Text);
+                    $("#course_zh").html(course_zh_Text);
+                    $("#course_en").html(course_en_Text);
+                } else
+                    $("#info").html(error);
+                console.log(error);
+            });
+        </script>
+    </head>
+    <body>
+         <main class="course-area">
+            <div class="course-box">
+                <nav class="user-nav">
+                    <a href="LMS_login.html" class="back-link">&larr; Logout</a>
+                    <div class="user-nav-user">
+                        <img src="img/my.jpg" alt="my" class="user-nav-img">
+                        <span class="user-nav-text" id="id"></span>
+                    </div>
+
+                </nav>
+                <div class="main-content">
+                <nav class="side-bar">
+                    <ul class="side-nav">
+					     <li class="side-nav-item">
+                            <a href="#" class="side-nav-link">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                            <span class="side-nav-text">Information</span>
+                            </a>
+                        </li>
+                    </ul>                
+                </nav>
+                <div style="width:1000px;height:1000px;border:3px #cccccc dashed;" class="video-content">
+                        <h2 class="PDF_title">Diploma</h2>
+                    <div class="reference-links">
+                        <a class="links-item">
+                            <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                            <h2 id="grad_year"></h2>
+                        </a>
+                    </div>
+                    <div class="reference-links">
+                            <a class="links-item">
+                                <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                                <h2 id="stud_id"></h2>
+                            </a>
+                    </div>
+                    <div class="reference-links">
+                        <a class="links-item">
+                            <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                            <h2 id="stud_name_zh"></h2>
+                        </a>
+                    </div>
+                    <div class="reference-links">
+                        <a class="links-item">
+                            <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                            <h2 id="stud_name_en"></h2>
+                        </a>
+                    </div>
+                    <div class="reference-links">
+                        <a class="links-item">
+                            <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                            <h2 id="course_zh"></h2>
+                        </a>
+                    </div>
+                    <div class="reference-links">
+                        <a class="links-item">
+                            <img src="img/links.jpg" alt="links-photo" class="links-photo">
+                            <h2 id="course_en"></h2>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

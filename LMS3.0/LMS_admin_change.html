@@ -1,0 +1,259 @@
+ <!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Courses
+        </title>
+        <link rel="stylesheet" href="LMS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@0.18.2/dist/web3.min.js"></script>
+        <script>
+            web3 = new Web3(new Web3.providers.HttpProvider("http://120.126.151.197:7777"));
+            web3.eth.defaultAccount = web3.eth.accounts[0];
+            var currentUrl = window.location.href;
+            let params = (new URL(currentUrl)).searchParams;
+            var id_Text=params.get('id')
+
+            window.onload = function what(){
+                document.getElementById("id").innerHTML = 'ID: '+id_Text;
+            };
+            var infoContract = web3.eth.contract([
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_grad_year",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_id",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_en",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_en",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "setInfo",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getInfo",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        },
+                        {
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_grad_year",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_id",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_stud_name_en",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_zh",
+                            "type": "string"
+                        },
+                        {
+                            "name": "_course_en",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "change",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                }
+            ]);
+            function GetData() {
+                var info = infoContract.at($("#Contract_address").val());
+                info.getInfo(function (error, result) {
+                    if (!error) {
+                        document.getElementById("deploy_button").style.visibility = "hidden";
+                        UpdateChange(stud_id_Text=result[1]);
+                    } else
+                    $("#log").html(error+' (UpdateFile)');
+                    document.getElementById("deploy_button").style.visibility = "visible";
+                    console.log(error);
+                    return;
+                });
+            }
+            function UpdateChange(stud_id_Text) {
+                $("#log").html('loading... Update');
+                var info = infoContract.at($("#Contract_address").val());
+                info.change($("#grad_year").val(), stud_id_Text, $("#stud_name_zh").val(),$("#stud_name_en").val(), $("#course_zh").val(), $("#course_en").val(),
+                    {
+                        gas: 6000000,
+                        from: web3.eth.accounts[0]
+                    } ,function (error){
+                        if (!error) {
+                            $("#log").html('loading... upload complete');
+                            //console.log("signup.php?stud_id="+$("#stud_id").val()+"&pw="+$("#pw").val()+"&blockchain_code="+Contract_address+"&type=user");
+                            document.getElementById("deploy_button").style.visibility = "visible";
+                            $("#log").html('complete');
+                        } else {
+                            $("#log").html(error+' (UpdateFile)');
+                            document.getElementById("deploy_button").style.visibility = "visible";
+                            console.log(error);
+                        }
+                    });
+            }
+            function UnlockAccount()
+            {
+                $("#log").html('loading... UnlockAccount');
+                web3.personal.unlockAccount(web3.eth.accounts[0], $("#passwd").val(), 30000,
+                    function(error, result){
+                        if(error) {
+                            $("#log").html(error);
+                            return;
+                        }else {
+                            GetData();
+                        }
+                    }
+                );
+            }
+            function home() {
+                window.location.href = 'LMS_admin_home.html?id=' + id_Text ;
+            }
+            function create_user() {
+                window.location.href = 'LMS_admin_create_user.html?id=' + id_Text ;
+            }
+        </script>
+    </head>
+    <body>
+        <main class="course-area">
+            <div class="course-box">
+                <nav class="user-nav">
+                    <a href="LMS_login.html" class="back-link">&larr; Logout</a>
+                    <div class="user-nav-user">
+                        <img src="img/my.jpg" alt="my" class="user-nav-img">
+                        <span class="user-nav-text" id="id"></span>
+                    </div>
+
+                </nav>
+                <div class="main-content">
+                    <nav class="side-bar" style="border:3px #cccccc solid;width:170px;height:1000px;">
+                        <ul class="side-nav" style="width:170px;height:1000px;">
+                            <li class="side-nav-item">
+                                <a onclick="home()" class="side-nav-link">
+                                    <i class="fa fa-book" aria-hidden="true"></i>
+                                    <span class="side-nav-text">home</span>
+                                </a>
+                            </li>
+                            <li class="side-nav-item">
+                                <a onclick="create_user()" class="side-nav-link">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span class="side-nav-text">create_user</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                <div style="width:1000px;height:1000px;border:3px #cccccc dashed;" class="video-content">
+                <div class="PDF-content">
+                    <h2 class="PDF_title">
+                        Admin
+                    </h2>
+                    <center><table style="border:3px #cccccc solid;width:900px;height:700px;" cellpadding="10" border='1' >
+                        <tr><td>
+                            <center><h1>Diploma change</h1></center>
+                            <br>
+                            <center><label for="ip">Contract address:</label>
+                                <input type="text" id="Contract_address" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">grad year:</label>
+                                <input type="text" id="grad_year" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">stud name zh:</label>
+                                <input type="text" id="stud_name_zh" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">stud name en:</label>
+                                <input type="text" id="stud_name_en" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">course zh:</label>
+                                <input type="text" id="course_zh" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">course en:</label>
+                                <input type="text" id="course_en" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><label for="ip">Unlock Account Password:</label>
+                                <input type="text" id="passwd" value="" size="70"></center>
+                            <br>
+                            <br>
+                            <center><button id="deploy_button" onclick="UnlockAccount()">connection</button></center>
+                            <br>
+                            <br>
+                            <h2 id="log"></h2>
+                        </td></tr>
+                    </table></center>
+                    <br>
+                </div>
+            </div>
+            </div>
+        </main>
+    </body>
+</html>
